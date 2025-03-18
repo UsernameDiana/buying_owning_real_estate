@@ -36,5 +36,10 @@ It uses Entity Framework Core with SQLite to manage and query tax data database.
     Copenhagen
     Enter date (yyyy-mm-dd):
     2016-01-01
-    Tax rate for Copenhagen on 2016-01-01 is 0,2
+    Tax rate for Copenhagen on 2016-01-01 is 0,1
     ```
+
+## Import Data from JSON
+The application will check if the database is empty and if it is empty, 
+the run command will automatically import the data from the `municipalities.json`.
+- `municipalities.json`: Example JSON file.
