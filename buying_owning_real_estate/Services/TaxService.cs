@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using System.IO;
 
 public class TaxService
 {
@@ -24,5 +26,15 @@ public class TaxService
             .FirstOrDefault();
 
         return tax?.Rate ?? 0;
+    }
+
+    public void ImportMunicipalitiesFromFile(string filePath)
+    {
+        var jsonData = File.ReadAllText(filePath);
+        var municipalities = JsonConvert.DeserializeObject<List<Municipality>>(jsonData)
+                             ?? new List<Municipality>();
+
+        _context.Municipalities.AddRange(municipalities);
+        _context.SaveChanges();
     }
 }

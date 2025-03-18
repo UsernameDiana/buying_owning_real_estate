@@ -1,0 +1,49 @@
+[
+    {
+        "MunicipalityId": 1,
+        "Name": "Copenhagen",
+        "Taxes": [
+            {
+                "TaxId": 1,
+                "Type": "Yearly",
+                "Rate": 0.2,
+                "StartDate": "2016-01-01",
+                "EndDate": "2016-12-31"
+            },
+            {
+                "TaxId": 2,
+                "Type": "Monthly",
+                "Rate": 0.4,
+                "StartDate": "2016-05-01",
+                "EndDate": "2016-05-31"
+            },
+            {
+                "TaxId": 3,
+                "Type": "Daily",
+                "Rate": 0.1,
+                "StartDate": "2016-01-01",
+                "EndDate": "2016-01-01"
+            },
+            {
+                "TaxId": 4,
+                "Type": "Daily",
+                "Rate": 0.1,
+                "StartDate": "2016-12-25",
+                "EndDate": "2016-12-25"
+            }
+        ]
+    },
+    {
+        "MunicipalityId": 2,
+        "Name": "Aarhus",
+        "Taxes": [
+            {
+                "TaxId": 5,
+                "Type": "Monthly",
+                "Rate": 0.3,
+                "StartDate": "2016-01-01",
+                "EndDate": "2016-01-31"
+            }
+        ]
+    }
+]
