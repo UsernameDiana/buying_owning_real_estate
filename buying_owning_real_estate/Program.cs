@@ -10,8 +10,11 @@ class Program
 
             var taxService = new TaxService(context);
 
-            // Import data from JSON file
-            taxService.ImportMunicipalitiesFromFile("municipalities.json");
+            // Check if the database is empty before importing data
+            if (!context.Municipalities.Any())
+            {
+                taxService.ImportMunicipalitiesFromFile("municipalities.json");
+            }
 
             Console.WriteLine("Enter municipality name:");
             string? municipalityName = Console.ReadLine();

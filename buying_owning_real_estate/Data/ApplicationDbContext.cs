@@ -9,4 +9,13 @@ public class ApplicationDbContext : DbContext
     {
         builder.UseSqlite("Data Source=taxes.db");
     }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Municipality>()
+            .HasKey(m => m.MunicipalityId);
+
+        modelBuilder.Entity<Tax>()
+            .HasKey(t => t.TaxId);
+    }
 }
