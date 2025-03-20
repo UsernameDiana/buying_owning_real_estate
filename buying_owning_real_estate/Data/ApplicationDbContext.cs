@@ -15,6 +15,10 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<Municipality>()
             .HasKey(m => m.MunicipalityId);
 
+        modelBuilder.Entity<Municipality>()
+            .HasIndex(m => m.Name)
+            .IsUnique();
+
         modelBuilder.Entity<Tax>()
             .HasKey(t => t.TaxId);
     }

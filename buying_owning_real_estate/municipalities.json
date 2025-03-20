@@ -43,6 +43,13 @@
                 "Rate": 0.3,
                 "StartDate": "2016-01-01",
                 "EndDate": "2016-01-31"
+            },
+            {
+                "TaxId": 6,
+                "Type": "Weekly",
+                "Rate": 0.5,
+                "StartDate": "2016-03-01",
+                "EndDate": "2016-03-31"
             }
         ]
     }

@@ -4,34 +4,35 @@ class Program
 {
     static void Main(string[] args)
     {
-        using (var context = new ApplicationDbContext())
+        using var context = new ApplicationDbContext();
+        context.Database.EnsureCreated();
+        var taxService = new TaxService(context);
+
+        // Check if the database is empty before importing data
+        if (!context.Municipalities.Any())
         {
-            context.Database.EnsureCreated();
+            taxService.ImportMunicipalitiesFromFile("municipalities.json");
+        }
 
-            var taxService = new TaxService(context);
-
-            // Check if the database is empty before importing data
-            if (!context.Municipalities.Any())
-            {
-                taxService.ImportMunicipalitiesFromFile("municipalities.json");
-            }
-
-            Console.WriteLine("Enter municipality name:");
+        while(true)
+        {
+            Console.WriteLine("Enter municipality name or type 'exit' to quit:");
             string? municipalityName = Console.ReadLine();
 
-            Console.WriteLine("Enter date (yyyy-mm-dd):");
-            string? dateString = Console.ReadLine();
-
-            if (municipalityName == null || dateString == null)
+            if (municipalityName?.ToLower() == "exit") break;
+            if (municipalityName == null || !context.Municipalities.Any(m => m.Name == municipalityName))
             {
-                Console.WriteLine("Invalid input.");
-                return;
+                Console.WriteLine("Municipality not found.");
+                continue;
             }
 
-            if (!DateTime.TryParse(dateString, out DateTime date))
+            Console.WriteLine("Enter date (yyyy-mm-dd) or type 'exit' to quit:");
+            string? dateString = Console.ReadLine();
+            if (dateString?.ToLower() == "exit") break;
+            if (string.IsNullOrEmpty(dateString) || !DateTime.TryParse(dateString, out DateTime date))
             {
-                Console.WriteLine("Invalid date format.");
-                return;
+                Console.WriteLine("Invalid date input.");
+                continue;
             }
 
             try
@@ -44,5 +45,6 @@ class Program
                 Console.WriteLine($"Error: {ex.Message}");
             }
         }
+
     }
 }

@@ -1,7 +1,7 @@
 public class Tax
 {
     public int TaxId { get; set; }
-    public string Type { get; set; } = string.Empty; // Daily, Weekly, Monthly, Yearly
+    public TaxType Type { get; set; }
     public decimal Rate { get; set; }
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
